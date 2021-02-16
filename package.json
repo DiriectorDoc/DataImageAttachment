@@ -1,0 +1,22 @@
+{
+  "name": "dataimageattachment",
+  "version": "1.0.0",
+  "description": "Makes using Data URIs easier when using discord.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiriectorDoc/DataImageAttachment.git"
+  },
+  "author": "Diriector_Doc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DiriectorDoc/DataImageAttachment/issues"
+  },
+  "homepage": "https://github.com/DiriectorDoc/DataImageAttachment#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
