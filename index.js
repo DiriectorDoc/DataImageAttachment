@@ -1,6 +1,4 @@
-const {MessageAttachment} = require("discord.js")
-
-class DataImageAttachment extends MessageAttachment {
+class DataImageAttachment extends require("discord.js").MessageAttachment {
 	constructor(uri, name = null, patchData) {
 		super(DataImageAttachment.makeBuffer(uri, name), name, patchData)
 	}
@@ -14,11 +12,11 @@ class DataImageAttachment extends MessageAttachment {
 			let data = /data:(?<mime>[\w\/\-\.]+);(?<encoding>\w+),(?<data>.*)/gm.exec(uri)?.groups,
 				attachment = Buffer.from(data?.data ?? uri, data?.encoding ?? "base64");
 
-			if (data?.mime && !name.match(`.${data.mime.split("/")[1]}$`)) {
+			if(name && data?.mime && !name.match(`.${data.mime.split("/")[1]}$`)){//`// This comment's sole purpose is to fix a glitch in my IDE's syntax highlighting
 				console.warn(`Image name: "${name}" does not match data mime type: "${data.mime}"`)
 			}
 			return attachment
-		} catch (e) {
+		} catch(e){
 			return null
 		}
 	}
