@@ -11,8 +11,7 @@ class DataImageAttachment extends require("discord.js").MessageAttachment {
 		try {
 			let data = /data:(?<mime>[\w\/\-\.]+);(?<encoding>\w+),(?<data>.*)/gm.exec(uri)?.groups,
 				attachment = Buffer.from(data?.data ?? uri, data?.encoding ?? "base64");
-
-			if(name && data?.mime && !name.match(`.${data.mime.split("/")[1]}$`)){//`// This comment's sole purpose is to fix a glitch in my IDE's syntax highlighting
+			if(name && data?.mime && !name.match(`.${data.mime.split("/")[1]}$`)){
 				console.warn(`Image name: "${name}" does not match data mime type: "${data.mime}"`)
 			}
 			return attachment
@@ -22,4 +21,4 @@ class DataImageAttachment extends require("discord.js").MessageAttachment {
 	}
 }
 
-module.exports = DataImageAttachment
+export default DataImageAttachment
