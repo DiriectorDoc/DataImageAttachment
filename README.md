@@ -46,4 +46,4 @@ someChannel.send("Some message", {
 ![Result embed](https://user-images.githubusercontent.com/66105586/114088714-4d4d9580-9883-11eb-9b44-7cb541215cac.png)
 
 
->**Note:** It is important that that the MIME type and the file extention match.
+>**Note:** It is important that that the MIME type and the filename extention match.

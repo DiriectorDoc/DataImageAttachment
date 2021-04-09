@@ -21,4 +21,4 @@ class DataImageAttachment extends require("discord.js").MessageAttachment {
 	}
 }
 
-export default DataImageAttachment
+module.exports = DataImageAttachment
