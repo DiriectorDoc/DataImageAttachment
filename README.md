@@ -1,5 +1,17 @@
 # DataImageAttachment
- Makes using Data URIs easier when using discord.js
+Create MessageAttachments using data URIs in discord.js.
+
+Effectively, it turns having to use this:
+
+```javascript
+new MessageAttachment(Buffer.from(uri, "base64"))
+```
+
+...to this:
+
+```javascript
+new DataImageAttachment(uri)
+```
 
 ## Usage
 When creating message, link the attackment 
@@ -18,6 +30,9 @@ Say you wanted to send this image in in a message.
 Your code should look something like this:
 
 ```JavaScript
+const Discord = require("discord.js"),
+      DataImageAttachment = require("dataimageattachment");
+
 let uri = "data:image/jpeg;base64,/9j/2wBDAAQDAwQDAw...";
 
 someChannel.send("An image of a flower", {files: [new DataImageAttachment(uri, "flower.jpeg")]});
@@ -25,9 +40,6 @@ someChannel.send("An image of a flower", {files: [new DataImageAttachment(uri, "
 To use the image in a MessageEmbed, make the URL of the image `"attachment://fileName.jpeg"`
 
 ```JavaScript
-const Discord = require("discord.js"),
-      DataImageAttachment = require("dataimageattachment");
-
 let uri = "data:image/jpeg;base64,/9j/2wBDAAQDAwQDAw...";
 
 someChannel.send("Some message", {
@@ -47,3 +59,16 @@ someChannel.send("Some message", {
 
 
 >**Note:** It is important that that the MIME type and the filename extention match.
+
+## Changing the image
+
+To change the, simply call the `.setFile( "..." )` function:
+
+```JavaScript
+let attachment = new DataImageAttachment();
+
+attachment.setFile("data:image/jpeg;base64,/9j/2wBDAAQDAwQDAw...")
+```
+
+## Other functions
+This class extentd the [`MessageAttachment`](https://discord.js.org/#/docs/main/stable/class/MessageAttachment) class from discord.js, so properties can be set and accessed in the same way.
