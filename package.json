@@ -1,6 +1,6 @@
 {
   "name": "dataimageattachment",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Makes using Data URIs easier when using discord.js",
   "main": "index.js",
   "scripts": {
