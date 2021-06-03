@@ -4,7 +4,7 @@ Create MessageAttachments using data URIs in discord.js.
 Effectively, it turns having to use this:
 
 ```javascript
-new MessageAttachment(Buffer.from(uri, "base64"))
+new MessageAttachment(Buffer.from(uri.match(/^data:.+\/(.+);base64,(.*)$/)[2], "base64"))
 ```
 
 ...to this:
@@ -12,6 +12,10 @@ new MessageAttachment(Buffer.from(uri, "base64"))
 ```javascript
 new DataImageAttachment(uri)
 ```
+
+## Install with NPM
+
+    npm i dataimageattachment
 
 ## Usage
 When creating message, link the attackment 
@@ -62,13 +66,15 @@ someChannel.send("Some message", {
 
 ## Changing the image
 
-To change the, simply call the `.setFile( "..." )` function:
+To change the image, simply call the `.setFile( "..." )` function:
 
 ```JavaScript
 let attachment = new DataImageAttachment();
 
 attachment.setFile("data:image/jpeg;base64,/9j/2wBDAAQDAwQDAw...")
 ```
+
+> **Note:** Unlike MessageAttachment.prototype.setFile, only strings of data URIs can be used to set the file of a DataImageAttachment.
 
 ## Other functions
 This class extentd the [`MessageAttachment`](https://discord.js.org/#/docs/main/stable/class/MessageAttachment) class from discord.js, so properties can be set and accessed in the same way.
