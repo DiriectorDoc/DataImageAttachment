@@ -1,18 +1,20 @@
-module.exports = class DataImageAttachment extends require("discord.js").MessageAttachment {
-	constructor(uri, name = null, patchData) {
-		super(DataImageAttachment.makeBuffer(uri, name), name, patchData)
+module.exports = class extends require("discord.js").MessageAttachment {
+	constructor(uri, name = null, patchData){
+		super(null, null, patchData)
+		this.setFile(uri, name)
 	}
 
-	setFile(uri, name = null) {
-		return super.setFile(DataImageAttachment.makeBuffer(uri, name), name)
+	setFile(uri, name = null){
+		return super.setFile(this.constructor.makeBuffer(uri, name), name)
 	}
 
-	static makeBuffer(uri, name) {
+	static makeBuffer(uri, name){
 		try {
-			let data = /data:(?<mime>[\w\/\-\.]+);(?<encoding>\w+),(?<data>.*)/gm.exec(uri)?.groups,
-				attachment = Buffer.from(data?.data ?? uri, data?.encoding ?? "base64");
+			let data = /data:(?<mime>[\w\/\-\.]+);(?<encoding>[\w=-]+),(?<data>.*)/gm.exec(uri)?.groups,
+				encoding = (data?.encoding == "charset=utf-8" ? "utf8" : data?.encoding) ?? "base64",
+				attachment = Buffer.from(data?.data ?? uri, encoding);
 			if(name && data?.mime){
-				let unmatchedMIMEType = false;
+				let unmatchedMIMEType;
 				switch(data.mime){
 					case "image/jpeg":
 						unmatchedMIMEType = /\.jpe?g$/gmi.test(name);
