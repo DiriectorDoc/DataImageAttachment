@@ -14,18 +14,18 @@ module.exports = class extends require("discord.js").MessageAttachment {
 				encoding = (data?.encoding == "charset=utf-8" ? "utf8" : data?.encoding) ?? "base64",
 				attachment = Buffer.from(data?.data ?? uri, encoding);
 			if(name && data?.mime){
-				let unmatchedMIMEType;
+				let matchedMIMEType;
 				switch(data.mime){
 					case "image/jpeg":
-						unmatchedMIMEType = /\.jpe?g$/gmi.test(name);
+						matchedMIMEType = /\.jpe?g$/gmi.test(name);
 						break;
 					case "image/apng":
-						unmatchedMIMEType = /\.a?png$/gmi.test(name);
+						matchedMIMEType = /\.a?png$/gmi.test(name);
 						break;
 					default:
-						unmatchedMIMEType = RegExp(`.${data.mime.split("/")[1]}$`, "gmi").test(name)
+						matchedMIMEType = RegExp(`.${data.mime.split("/")[1]}$`, "gmi").test(name)
 				}
-				if(unmatchedMIMEType)
+				if(!matchedMIMEType)
 					console.warn(`Image name: "${name}" does not match data mime type: "${data.mime}"`)
 			}
 			return attachment
