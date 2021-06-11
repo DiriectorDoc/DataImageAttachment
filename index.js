@@ -10,9 +10,8 @@ module.exports = class extends require("discord.js").MessageAttachment {
 
 	static makeBuffer(uri, name){
 		try {
-			let data = /data:(?<mime>[\w\/\-\.]+);(?<encoding>[\w=-]+),(?<data>.*)/gm.exec(uri)?.groups,
-				encoding = (data?.encoding == "charset=utf-8" ? "utf8" : data?.encoding) ?? "base64",
-				attachment = Buffer.from(data?.data ?? uri, encoding);
+			let data = /^data:(?<media>(?<mime>[a-z\-]+\/[a-z\-\+]+);(?<params>[a-z\-]+\=[\w\-]+)*)?;?(?<encoding>base64)?,(?<data>[a-z0-9!$&',()*+,;=\-._~:@?%\s\/]*)$/gmi.exec(uri)?.groups,
+				attachment = Buffer.from(data?.data ?? uri, data?.encoding);
 			if(name && data?.mime){
 				let matchedMIMEType;
 				switch(data.mime){
