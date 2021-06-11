@@ -25,6 +25,8 @@
     "data uri",
     "uri",
     "image",
-    "attachment"
+    "attachment",
+    "node",
+    "discordapp"
   ]
 }
