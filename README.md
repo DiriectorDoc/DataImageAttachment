@@ -64,17 +64,15 @@ someChannel.send("Some message", {
 
 >**Note:** It is important that that the MIME type and the filename extention match.
 
-## Changing the image
+## Extention
 
-To change the image, simply call the `.setFile( "..." )` function:
+This class extentd the [`MessageAttachment`](https://discord.js.org/#/docs/main/stable/class/MessageAttachment) class from discord.js, so properties can be set and accessed in the same way.
+
+The `.setFile(...)` function has been modified to also accept data URI strings, without the need to create a buffer. An ordinatry buffer will also be accepted as always.
 
 ```JavaScript
 let attachment = new DataImageAttachment();
 
 attachment.setFile("data:image/jpeg;base64,/9j/2wBDAAQDAwQDAw...")
+attachment.setFile(someBuffer)
 ```
-
-> **Note:** Unlike MessageAttachment.prototype.setFile, only strings of data URIs can be used to set the file of a DataImageAttachment.
-
-## Other functions
-This class extentd the [`MessageAttachment`](https://discord.js.org/#/docs/main/stable/class/MessageAttachment) class from discord.js, so properties can be set and accessed in the same way.
