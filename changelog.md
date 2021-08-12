@@ -1,3 +1,6 @@
+## 1.1.2
+* Changed package.json to allow enable compatibility with d.js v13+ (>=12.5.1). Now it should no longer have a node_modules folder when it's used as a dependancy.
+
 ## 1.1.1
 * The `.setFile(...)` function now accepts both URI strings and ordinary Buffers as input
 
