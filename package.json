@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/DiriectorDoc/DataImageAttachment#readme",
   "dependencies": {
-    "discord.js": "^12.5.1"
+    "discord.js": ">=12.5.1"
   },
   "keywords": [
     "discord",
