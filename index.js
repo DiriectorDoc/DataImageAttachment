@@ -19,7 +19,7 @@ module.exports = class extends require("discord.js").MessageAttachment {
 					case "image/apng":
 						return /\.a?png$/gmi.test(name);
 					default:
-						return RegExp(`.${mime.split("/")[1]}$`, "gmi").test(name)
+						return RegExp(`[.]${mime.split("/")[1]}$`, "gmi").test(name)
 				}
 			})(data.mime))
 				console.warn(`Image name: "${name}" does not match data mime type: "${data.mime}"`);
