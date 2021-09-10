@@ -1,3 +1,13 @@
+## 1.2.0
+* The signature of the uri is now checked, just in case the MIME type does not match the filetype's signature. This does not check if the uri is valid, however.
+    * Checks the signature of:
+        * JPEG
+        * PNG
+        * GIF
+        * WebP
+    * Note: This will only work if the encoding is base64, which in practice should always be the case anyway for data images
+* Will no longer give a warning when displaying JPEGs with the file extention `.jpe`
+
 ## 1.1.2
 * Changed package.json to allow enable compatibility with d.js v13+ (>=12.5.1). Now it should no longer have a node_modules folder when it's used as a dependancy.
 
