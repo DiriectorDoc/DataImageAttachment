@@ -76,3 +76,7 @@ let attachment = new DataImageAttachment();
 attachment.setFile("data:image/jpeg;base64,/9j/2wBDAAQDAwQDAw...")
 attachment.setFile(someBuffer)
 ```
+
+## Changes
+
+A full changelog can be found [here](changelog.md)
