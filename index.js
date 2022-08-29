@@ -1,11 +1,11 @@
-module.exports = class extends require("discord.js").MessageAttachment {
-	constructor(uri, name = null, patchData){
-		super(null, null, patchData)
-		this.setFile(uri, name)
+module.exports = class extends require("discord.js").AttachmentBuilder {
+	constructor(uri, data){
+		super(null, data)
+		this.setFile(uri)
 	}
 
-	setFile(file, name = null){
-		return super.setFile(typeof file == "string" ? this.constructor.makeBuffer(file, name) : file, name)
+	setFile(file){
+		return super.setFile(typeof file == "string" ? this.constructor.makeBuffer(file, this.data.name) : file)
 	}
 
 	static makeBuffer(uri, name){

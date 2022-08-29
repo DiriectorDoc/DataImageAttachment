@@ -1,6 +1,6 @@
 {
   "name": "dataimageattachment",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Makes using Data URIs easier when using discord.js",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/DiriectorDoc/DataImageAttachment#readme",
   "dependencies": {
-    "discord.js": ">=12.5.1"
+    "discord.js": ">=14"
   },
   "keywords": [
     "discord",

@@ -4,7 +4,7 @@ Create MessageAttachments using data URIs in discord.js.
 Effectively, it turns having to use this:
 
 ```javascript
-new MessageAttachment(Buffer.from(uri.match(/^data:.+\/(.+);base64,(.*)$/)[2], "base64"))
+new AttachmentBuilder(Buffer.from(uri.match(/^data:.+\/(.+);base64,(.*)$/)[2], "base64"))
 ```
 
 ...to this:
@@ -39,15 +39,15 @@ const Discord = require("discord.js"),
 
 let uri = "data:image/jpeg;base64,/9j/2wBDAAQDAwQDAw...";
 
-someChannel.send("An image of a flower", {files: [new DataImageAttachment(uri, "flower.jpeg")]});
+someChannel.send("An image of a flower", {files: [new DataImageAttachment(uri, {name:"flower.jpeg", description:"optional"})]});
 ```
-To use the image in a MessageEmbed, make the URL of the image `"attachment://fileName.jpeg"`
+To use the image in an EmbedBuilder, make the URL of the image `"attachment://fileName.jpeg"`
 
 ```JavaScript
 let uri = "data:image/jpeg;base64,/9j/2wBDAAQDAwQDAw...";
 
 someChannel.send("Some message", {
-    embed: new Discord.MessageEmbed({
+    embed: new Discord.EmbedBuilder({
         title: "Flower",
         description: "This is a nice image of a flower",
         image: {
@@ -55,7 +55,7 @@ someChannel.send("Some message", {
         },
         timestamp: new Date
     }),
-    files: [new DataImageAttachment(uri, "flower.jpeg")]
+    files: [new DataImageAttachment(uri, {name:"flower.jpeg"})]
 })
 ```
 
@@ -66,7 +66,7 @@ someChannel.send("Some message", {
 
 ## Extention
 
-This class extentd the [`MessageAttachment`](https://discord.js.org/#/docs/main/stable/class/MessageAttachment) class from discord.js, so properties can be set and accessed in the same way.
+This class extentd the [`AttachmentBuilder`](https://discord.js.org/#/docs/discord.js/main/class/AttachmentBuilder) class from discord.js, so properties can be set and accessed in the same way.
 
 The `.setFile(...)` function has been modified to also accept data URI strings, without the need to create a buffer. An ordinatry buffer will also be accepted as always.
 
